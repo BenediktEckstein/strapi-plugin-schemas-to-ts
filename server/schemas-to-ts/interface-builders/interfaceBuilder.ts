@@ -264,9 +264,11 @@ export abstract class InterfaceBuilder {
     }
 
     if (schemaInfo.source !== SchemaSource.Component) {
-      interfaceText += `${indentation}createdAt: Date;`;
-      interfaceText += `${indentation}updatedAt: Date;`;
-      interfaceText += `${indentation}publishedAt?: Date;`;
+      interfaceText += `${indentation}createdAt: Date;\n`;
+      interfaceText += `${indentation}updatedAt: Date;\n`;
+      interfaceText += `${indentation}publishedAt?: Date;\n`;
+    } else {
+      interfaceText += `${indentation}id: number;\n`;
     }
 
     const attributes = Object.entries(schemaInfo.schema.attributes);
