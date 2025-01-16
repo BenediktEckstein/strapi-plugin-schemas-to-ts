@@ -268,7 +268,7 @@ export abstract class InterfaceBuilder {
       interfaceText += `${indentation}updatedAt: Date;\n`;
       interfaceText += `${indentation}publishedAt?: Date;\n`;
     } else {
-      interfaceText += `${indentation}id: number;\n`;
+      interfaceText += `${indentation}id?: number;\n`;
     }
 
     const attributes = Object.entries(schemaInfo.schema.attributes);
