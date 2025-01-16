@@ -240,7 +240,7 @@ class InterfaceBuilder {
             interfaceText += `${indentation}publishedAt?: Date;\n`;
         }
         else {
-            interfaceText += `${indentation}id: number;\n`;
+            interfaceText += `${indentation}id?: number;\n`;
         }
         const attributes = Object.entries(schemaInfo.schema.attributes);
         for (const attribute of attributes) {
