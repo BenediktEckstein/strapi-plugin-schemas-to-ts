@@ -78,7 +78,7 @@ export abstract class InterfaceBuilder {
     if (extensionFolderModelsPath && FileHelpers.folderExists(`${extensionFolderModelsPath}/users-permissions/content-types/user`)) {
       this.addCommonSchema(commonSchemas, commonFolderModelsPath, 'User',
         `import {FullUser, FullUser_Plain, FullUser_NoRelations} from "../../extensions/users-permissions/content-types/user/FullUser";
-        export interface User extends FullUser {}`,`
+        export interface User extends FullUser {}`, `
         export interface User_Plain extends FullUser_Plain {}
         export interface User_NoRelations extends FullUser_NoRelations {}
     `);
@@ -445,6 +445,9 @@ export abstract class InterfaceBuilder {
       // -------------------------------------------------
       else if (attributeValue.type === 'json') {
         propertyType = 'any';
+        if (attributeValue.typescriptType) {
+          propertyType = attributeValue.typescriptType.type;
+        }
         propertyDefinition = `${indentation}${propertyName}: ${propertyType};\n`;
       }
 
@@ -508,7 +511,7 @@ export abstract class InterfaceBuilder {
       interfaceText += `${indentation}locale: string;\n`;
       if (schemaType === SchemaType.Standard) {
         interfaceText += `${indentation}localizations?: { data: ${schemaInfo.pascalName}[] };\n`;
-      } else if(schemaType === SchemaType.Plain) {
+      } else if (schemaType === SchemaType.Plain) {
         interfaceText += `${indentation}localizations?: ${schemaInfo.pascalName}${plainClassSuffix}[];\n`;
       } else {
         interfaceText += `${indentation}localizations?: ${schemaInfo.pascalName}[];\n`;

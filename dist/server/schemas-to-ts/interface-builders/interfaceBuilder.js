@@ -388,6 +388,9 @@ class InterfaceBuilder {
             // -------------------------------------------------
             else if (attributeValue.type === 'json') {
                 propertyType = 'any';
+                if (attributeValue.typescriptType) {
+                    propertyType = attributeValue.typescriptType.type;
+                }
                 propertyDefinition = `${indentation}${propertyName}: ${propertyType};\n`;
             }
             // -------------------------------------------------
